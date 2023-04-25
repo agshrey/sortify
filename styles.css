@@ -1,0 +1,9 @@
+* {
+    background-color: black;
+}
+
+h1, h2 {
+    color: white;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
