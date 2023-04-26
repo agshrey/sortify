@@ -1,5 +1,6 @@
 const button = document.getElementById("randomize");
 const button2 = document.getElementById("visualize");
+const button3 = document.getElementById("selection");
 
 const container = document.getElementById("container");
 const canvas = document.getElementById("canvas1");
@@ -10,8 +11,7 @@ const ctx = canvas.getContext("2d");
 let dataset = 100;
 let dataArray = [];
 
-
-button.addEventListener("click", function() {
+function randomize() {
     for(let i = 0; i < dataset; i++) {
         dataArray[i] = i+1;
     }
@@ -24,26 +24,37 @@ button.addEventListener("click", function() {
     }
 
     console.log(dataArray);
-    animate();
-});
+}
 
-button2.addEventListener("click", function() {
+function sort() {
     dataArray.sort(function(a, b){return a - b});
     console.log(dataArray);
-    animate();
-});
-
-
+}
 
 function animate() {
     let x = 0;
     const barWidth = canvas.width/dataset;
     ctx.clearRect(0,0,canvas.width, canvas.height);
     for(let i = 0; i < dataArray.length; i++) {
-        barHeight = dataArray[i]*5;
-        ctx.fillStyle = "white";
+        barHeight = dataArray[i]*2;
+        ctx.fillStyle = "red";
         ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
         x+= barWidth+10;
     }
-    requestAnimationFrame(animate);
 }
+
+button.addEventListener("click", function() {
+    for(let i = 0; i < 100; i++) {
+        randomize();
+        animate();
+    }
+});
+
+button2.addEventListener("click", function() {
+    sort();
+    animate();
+});
+
+button3.addEventListener("click", function() {
+    console.log("hello");
+})
